@@ -3,7 +3,8 @@ Version: 3.9
 Release: 1
 License: GPL2
 URL: https://github.com/arpa-simc/%{name}
-Source0: https://github.com/arpa-simc/%{name}/archive/v%{version}-%{release}.tar.gz#/%{name}-%{version}-%{release}.tar.gz
+GitHubSource: https://github.com/arpa-simc/%{name}/archive/v%{version}-%{release}.tar.gz#/%{name}-%{version}-%{release}.tar.gz
+Source0: %{githubsource}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 %if 0%{?rhel} == 7
 %define python3_vers python34
@@ -99,7 +100,13 @@ libwreport is a C++ library to read and write weather reports in BUFR and CREX
 
 
 %prep
-%setup -q -n %{name}-%{version}-%{release}
+
+%if %{Source0} == %{githubsource}
+  %setup -q -n %{name}-%{version}-%{release}
+%else
+  # we're in copr
+  %setup -q -n %{name}-%{version}
+%endif
 
 rm -rf %{py3dir}
 cp -a . %{py3dir}
