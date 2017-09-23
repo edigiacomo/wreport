@@ -5,6 +5,7 @@ services:
     
 script:
     - $DOCKER_RUN /bin/sh -c "dnf -y update"
+    - $DOCKER_RUN /bin/sh -c "dnf -y install dnf-plugins-core"
     - $DOCKER_RUN /bin/sh -c "dnf builddep /root/src/fedora/SPECS/wreport.spec"
     - $DOCKER_RUN /bin/sh -c "autoreconf -ifv && configure && make check"
     
