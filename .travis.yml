@@ -5,9 +5,9 @@ services:
     
 script:
     - $DOCKER_RUN /bin/sh -c "dnf -y update"
-    - $DOCKER_RUN /bin/sh -c "dnf -y install dnf-plugins-core"
+    - $DOCKER_RUN /bin/sh -c "dnf install 'dnf-command(builddep)'"
     - $DOCKER_RUN /bin/sh -c "dnf builddep /root/src/fedora/SPECS/wreport.spec"
-    - $DOCKER_RUN /bin/sh -c "autoreconf -ifv && configure && make check"
+    - $DOCKER_RUN /bin/sh -c "cd /root/src && autoreconf -ifv && ./configure && make check"
     
 env:
     - DOCKER_RUN="docker run -v ${TRAVIS_BUILD_DIR}:/root/src/ fedora:latest"
