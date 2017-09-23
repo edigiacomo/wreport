@@ -4,5 +4,9 @@ services:
     - docker
     
 script:
-    - docker run -v ${TRAVIS_BUILD_DIR}:/root/src/ fedora:latest /bin/sh -c "dnf update"
-    - docker run -v ${TRAVIS_BUILD_DIR}:/root/src/ fedora:latest /bin/sh -c "autoreconf -ifv && configure && make check"
+    - $DOCKER_RUN /bin/sh -c "dnf -y update"
+    - $DOCKER_RUN /bin/sh -c "dnf builddep /root/src/fedora/SPECS/wreport.spec"
+    - $DOCKER_RUN /bin/sh -c "autoreconf -ifv && configure && make check"
+    
+env:
+    - DOCKER_RUN="docker run -v ${TRAVIS_BUILD_DIR}:/root/src/ fedora:latest"
