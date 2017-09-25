@@ -1,5 +1,7 @@
 # WREPORT
 
+[![Build Status](https://travis-ci.org/edigiacomo/wreport.svg?branch=travis)](https://travis-ci.org/edigiacomo/wreport)
+
 ## Introduction
 
 wreport is a C++ library for working with weather reports.
