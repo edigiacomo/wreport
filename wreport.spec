@@ -1,5 +1,5 @@
 Name: wreport
-Version: 3.11
+Version: 3.12
 Release: 1
 License: GPL2
 URL: https://github.com/arpa-simc/%{name}
@@ -191,6 +191,9 @@ make install DESTDIR="%{buildroot}"
 
 
 %changelog
+* Mon Sep 25 2017 Emanuele Di Giacomo <emanuele@digiacomo.cc> 3.12-1
+- Changed Source0 (emanuele@digiacomo.cc)
+
 * Mon Sep 25 2017 Emanuele Di Giacomo <emanuele@digiacomo.cc> 3.11-1
 - Altro test
 
