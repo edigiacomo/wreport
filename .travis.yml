@@ -4,7 +4,7 @@ services:
     - docker
     
 script:
-    - $DOCKER_RUN /bin/sh -c "dnf install -y 'dnf-command(builddep)' redhat-rpm-config && dnf builddep -y /root/src/fedora/SPECS/wreport.spec && cd /root/src && autoreconf -ifv && ./configure && make check"
+    - $DOCKER_RUN /bin/sh -c "dnf install -y 'dnf-command(builddep)' fedora-packager && dnf builddep -y /root/src/fedora/SPECS/wreport.spec && cd /root/src && autoreconf -ifv && ./configure && make check"
     
 env:
     - DOCKER_RUN="docker run -v ${TRAVIS_BUILD_DIR}:/root/src/ fedora:latest"
